@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: payment-api
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        # CLAVE DE MICROSERVICIOS: evita enviar el nombre del paquete Java en el header.
+        # Así el consumidor puede deserializar el JSON en su propia clase sin errores.
+        spring.json.add.type.headers: false
